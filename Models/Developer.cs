@@ -1,14 +1,15 @@
-﻿
-namespace Training_Programm___Week_1.Models
+﻿using TrainingProgram;
+
+namespace TrainingProgram.Models
 {
     public class Developer : Employee
     {
-        public Developer(double Salary ,LeadDeveloper Manager) : base(Salary, Manager)
+        public Developer(decimal Salary ,LeadDeveloper Manager) : base(Salary, Manager)
         {
 
         }
 
-        public override double GetSalary()
+        public override decimal GetSalary()
         {
             return salary;
         }

@@ -1,13 +1,13 @@
 ﻿
-namespace Training_Programm___Week_1.Models
+namespace TrainingProgram.Models
 {
     public class HR : Employee
     {
-        public HR(double Salary ,Manager Manager) : base(Salary,Manager)
+        public HR(decimal Salary ,Manager Manager) : base(Salary,Manager)
         {
         }
 
-        public override double GetSalary()
+        public override decimal GetSalary()
         {
             return salary;
         }

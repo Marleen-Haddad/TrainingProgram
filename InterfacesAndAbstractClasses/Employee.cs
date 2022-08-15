@@ -1,16 +1,16 @@
 ﻿
-namespace Training_Programm___Week_1
+namespace TrainingProgram
 {
     public abstract class Employee
     {
-        protected double salary;
+        protected decimal salary;
         private Employee? manager;
-        public Employee(double Salary, Employee? Manager)
+        public Employee(decimal Salary, Employee? Manager)
         {
             salary = Salary;
             manager = Manager;
         }
 
-        public abstract double GetSalary();
+        public abstract decimal GetSalary();
     }
 }

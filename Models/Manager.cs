@@ -1,15 +1,17 @@
 ﻿
-namespace Training_Programm___Week_1.Models
+using TrainingProgram;
+
+namespace TrainingProgram.Models
 {
     public class Manager :Employee
     {
-        public double bonus { set; private get; }
+        private decimal bonus;
 
-        public Manager(double Salary,double Bonus) : base(Salary,null) 
+        public Manager(decimal Salary,decimal Bonus) : base(Salary,null) 
         {
             bonus = Bonus;
         }
-        public override double GetSalary() 
+        public override decimal GetSalary() 
         {
             return salary + bonus;
         }
