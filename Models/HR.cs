@@ -7,10 +7,6 @@ namespace TrainingProgram.Models
         {
         }
 
-        public override decimal GetSalary()
-        {
-            return salary;
-        }
     }
 }
 

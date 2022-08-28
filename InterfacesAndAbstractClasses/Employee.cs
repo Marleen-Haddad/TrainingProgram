@@ -11,6 +11,8 @@ namespace TrainingProgram
             manager = Manager;
         }
 
-        public abstract decimal GetSalary();
+        public virtual decimal GetSalary() { 
+          return salary;
+        }
     }
 }
