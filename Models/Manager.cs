@@ -7,7 +7,7 @@ namespace TrainingProgram.Models
     {
         private decimal bonus;
 
-        public Manager(decimal Salary,decimal Bonus) : base(Salary,null) 
+        public Manager(Guid Guid ,decimal Salary,decimal Bonus) : base(Guid,Salary) 
         {
             bonus = Bonus;
         }

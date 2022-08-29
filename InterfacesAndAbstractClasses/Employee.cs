@@ -4,15 +4,20 @@ namespace TrainingProgram
     public abstract class Employee
     {
         protected decimal salary;
+        public readonly Guid guid;
         private Employee? manager;
-        public Employee(decimal Salary, Employee? Manager)
+        public Employee(Guid guid,decimal Salary)
         {
             salary = Salary;
-            manager = Manager;
+            this.guid = guid;
         }
-
         public virtual decimal GetSalary() { 
           return salary;
         }
+        public virtual void SetManager(Employee? Manager)
+        {
+            manager = Manager;
+        }
+
     }
 }

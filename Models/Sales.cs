@@ -7,7 +7,7 @@ namespace TrainingProgram.Models
     {
         private const double target = 1000;
         public double preSetTarget { set; private get; }
-        public Sales(decimal Salary, Manager Manager,double PreSetTarget) :base(Salary,Manager)
+        public Sales(Guid Guid,decimal Salary,double PreSetTarget) :base(Guid,Salary)
         {
             preSetTarget = PreSetTarget;
         }

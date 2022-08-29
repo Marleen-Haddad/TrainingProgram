@@ -4,7 +4,8 @@ namespace TrainingProgram.Models
 {
     public class Developer : Employee
     {
-        public Developer(decimal Salary ,LeadDeveloper Manager) : base(Salary, Manager)
+        public readonly Guid leadDeveloperGuid;
+        public Developer(Guid Guid , decimal Salary ) : base(Guid ,Salary)
         {
 
         }

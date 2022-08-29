@@ -4,8 +4,8 @@ namespace TrainingProgram.Models
 {
     public class LeadDeveloper : Employee
     {
-
-        public LeadDeveloper(decimal Salary, Manager Manager) :base(Salary, Manager) 
+        public readonly Guid managerGuid;
+        public LeadDeveloper(Guid Guid ,decimal Salary, Manager Manager) :base(Guid ,Salary) 
         {
         }
 

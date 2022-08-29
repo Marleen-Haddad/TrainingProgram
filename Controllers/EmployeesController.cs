@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TrainingProgram.Models;
+using Week1.DAL;
 
 namespace TrainingProgramm.Controllers
 {
@@ -10,57 +11,63 @@ namespace TrainingProgramm.Controllers
 
 
         private readonly ILogger<EmployeesController> _logger;
-        
-        public EmployeesController(ILogger<EmployeesController> logger)
+        private readonly ManagerDAL _managerDAL;
+        private readonly LeadDeveloperDAL _leadDeveloperDAL;
+        private readonly HrDAL _hrDAL;
+        private readonly SalesDAL _salesDAL;
+        private readonly DeveloperDAL _developerDAL;
+        public EmployeesController(ILogger<EmployeesController> logger, ManagerDAL managerDAL, LeadDeveloperDAL leadDeveloperDAL, HrDAL hrDAL, SalesDAL salesDAL, DeveloperDAL developerDAL)
         {
             _logger = logger;
+            _managerDAL = managerDAL;
+            _leadDeveloperDAL = leadDeveloperDAL;
+            _hrDAL = hrDAL;
+            _salesDAL= salesDAL;
+            _developerDAL= developerDAL;
         }
 
         [HttpGet]
         [Route("GetManagerSalary")]
-        public decimal GetManagerSalary(decimal baseSalary, decimal bonus)
+        public decimal GetManagerSalary(Guid guid)
         {
-            Manager manager = new Manager(baseSalary, bonus);
-            return manager.GetSalary();
+            Manager? manager = _managerDAL.GetManagerByGuid(guid);
+            return  manager?.GetSalary() ?? -1;
         }
 
         [HttpGet]
         [Route("GetLeadDeveloperSalary")]
-        public decimal GetLeadDeveloperSalary(decimal mangerBaseSalary, decimal managerBonus , decimal baseSalary)
+        public decimal GetLeadDeveloperSalary(Guid guid)
         {
-            Manager manager = new Manager(mangerBaseSalary, managerBonus);
-            LeadDeveloper leadDeveloper = new LeadDeveloper(baseSalary, manager);
+           
+            LeadDeveloper? leadDeveloper = _leadDeveloperDAL.GetLeadDeveloperByGuid(guid, _managerDAL);
 
-            return leadDeveloper.GetSalary();
+            return leadDeveloper?.GetSalary()?? -1;
         }
 
         [HttpGet]
         [Route("GetDeveloperSalary")]
-        public decimal GetDeveloperSalary(decimal mangerBaseSalary, decimal managerBonus, decimal leadDeveloperbaseSalary , decimal baseSalary)
+        public decimal GetDeveloperSalary(Guid guid)
         {
-            Manager manager = new Manager(mangerBaseSalary, managerBonus);
-            LeadDeveloper leadDeveloper = new LeadDeveloper(baseSalary, manager);
-            Developer developer = new Developer(baseSalary, leadDeveloper);
-            return developer.GetSalary();
+
+            Developer? developer = _developerDAL.GetDeveloperByGuid(guid);
+            return developer?.GetSalary() ?? -1;
         }
 
         [HttpGet]
         [Route("GetHrSalary")]
-        public decimal GetHrSalary(decimal mangerBaseSalary, decimal managerBonus,decimal baseSalary)
+        public decimal GetHrSalary(Guid guid)
         {
-            Manager manager = new Manager(mangerBaseSalary, managerBonus);
-            HR hr = new HR(baseSalary, manager);
-            return hr.GetSalary();
+            HR? hr = _hrDAL.GetHrByGuid(guid);
+            return hr?.GetSalary() ?? -1;
         }
 
         [HttpGet]
         [Route("GetSalesSalary")]
-        public decimal GetSalesSalary(decimal mangerBaseSalary, decimal managerBonus, double preTarget, decimal baseSalary)
+        public decimal GetSalesSalary(Guid guid)
         {
-            Manager manager = new Manager(mangerBaseSalary, managerBonus);
-            Sales sales = new Sales(400, manager, 500);
+            Sales sales = _salesDAL.GetSalesByGuid(guid);
             return sales.GetSalary();
         }
-       
+
     }
 }
