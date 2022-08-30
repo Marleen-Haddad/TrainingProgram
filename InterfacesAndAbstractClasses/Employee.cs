@@ -14,7 +14,7 @@ namespace TrainingProgram
         public virtual decimal GetSalary() { 
           return salary;
         }
-        public virtual void SetManager(Employee? Manager)
+        public void SetManager(Employee? Manager)
         {
             manager = Manager;
         }
